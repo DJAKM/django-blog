@@ -18,15 +18,16 @@
           <div class="col-4 pt-1">
             <a class="blog-header-logo text-dark" href="/">Django Blog</a>
           </div>
-        <div class="col-4">
-        <form action="" method="GET" class="d-flex">
-          <div class="input-group">
-            <input type="text" class="form-control" name="keyword" placeholder="Search..." name="q">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </form>
-        </div>
+          <div class="col-4 d-flex justify-content-center">
+            <form action="{% url 'search' %}" method="GET" class="d-flex w-100">
+              <div class="input-group">
+                <input type="text" class="form-control" name="keyword" placeholder="Search..." value ="{{ keyword }}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="btn btn-sm btn-warning" href="#">Login</a> &nbsp;
             <a class="btn btn-sm btn-outline-secondary" href="#">Register</a>
