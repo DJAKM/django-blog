@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 from blogs import views as BlogsView
+# from dashboards import views as DashboardView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('blogs/search/', BlogsView.search, name="search"),
     path('register/',views.register, name = 'register'),
     path('logout/',views.logout , name='logout'),
-    path('login/',views.login, name = 'login')]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
+    path('login/',views.login, name = 'login'),
+    path('dashboard/',include('dashboards.urls'),)]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
