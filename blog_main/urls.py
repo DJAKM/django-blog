@@ -31,4 +31,4 @@ urlpatterns = [
     path('register/',views.register, name = 'register'),
     path('logout/',views.logout , name='logout'),
     path('login/',views.login, name = 'login'),
-    path('dashboard/',include('dashboards.urls'),)]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
+    path('dashboards/',include('dashboards.urls'),)]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)

@@ -4,21 +4,17 @@
 
 <div class="row">
     {% comment %} left sidebar {% endcomment %}
-    <div class="col-md-3">
-        <div class="nav flex-col nav-pills bg-light" aria-orientation="vertical" >
-            <a class="nav-link text-dark" href="{% url 'dashboard' %}">Dashboard</a>
-            <a class="nav-link" href="#">Categories</a>
-            <a class="nav-link" href="#">Posts</a>
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-             
-        </div>
-    </div>
 
+    {% include 'dashboard/sidebar.html' %}
 
 
     {% comment %} right content {% endcomment %}
     <div class="col-md-9">
         <div class="row">
+            <span>
+                <h3 class="text-center">Dashboard</h3>
+                <h4>Logged in as <b>{{ user.username }}</b></h4>
+            </span>
             <div class="col">
                 <div class="card border-default mb-3">
                     <div class="card-header text-center text-uppercase font-weight-bold">
