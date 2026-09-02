@@ -7,7 +7,8 @@
 
     <div class="col-md-9">
         <h2>All Categories</h2>
-<table class="table table-hover">
+        <a href="{% url 'add_category' %}" class="btn btn-dark text-light float-right mb-2">Add New Category</a>
+        <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -26,11 +27,11 @@
       <td>{{ category.created_at }}</td>
       <td>{{ category.updated_at }}</td>
       <td>
-        <a href="#" class="btn btn-sm btn-primary">
+        <a href="{% url 'edit_category' category.id %}" class="btn btn-sm btn-primary">
             <i class="fa fa-edit "></i>
         </a>
-        &nbsp;      
-        <a href="#" class="btn btn-sm btn-danger">
+        &nbsp;
+        <a href="{% url 'delete_category' category.id %}" class="btn btn-sm btn-danger">
             <i class="fa fa-trash "></i>
         </a>
       </td>

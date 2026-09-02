@@ -6,7 +6,7 @@ def get_categories(request):
     return dict(categories = categories)
 
 def get_about(request):
-    about = About.objects.get()
+    about = About.objects.first()
     return dict(
         about = about,
     )

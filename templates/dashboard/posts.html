@@ -1,0 +1,53 @@
+ {% extends "base.html" %}
+
+ {% block content %}
+
+ <div class="row">
+    {% include 'dashboard/sidebar.html' %}
+
+    <div class="col-md-9">
+        <h2>All Posts</h2>
+        <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-right mb-2">Add New Post</a>
+        <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Author</th>
+      <th scope="col">Status</th>
+      <th scope="col">Featured</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+      <th scope="col">Actions</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ post.title }}</td>
+      <td>{{ post.category }}</td>
+      <td>{{ post.author }}</td>
+      <td>{% if post.status == 1 %}Published{% else %}Draft{% endif %}</td>
+      <td>{% if post.featured %}Yes{% else %}No{% endif %}</td>
+      <td>{{ post.created_at }}</td>
+      <td>{{ post.updated_at }}</td>
+      <td>
+        {% comment %} <a href="{% url 'edit_post' post.id %}" class="btn btn-sm btn-primary">
+            <i class="fa fa-edit "></i>
+        </a>
+        &nbsp;
+        {% comment %} <a href="{% url 'delete_post' post.id %}" class="btn btn-sm btn-danger">
+            <i class="fa fa-trash "></i>
+        </a> {% endcomment %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+</div>
+
+ {% endblock %}
