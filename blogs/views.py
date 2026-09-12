@@ -1,7 +1,7 @@
-from django.shortcuts import render ,get_object_or_404,redirect
-from django.http import HttpResponse
+from django.shortcuts import render ,get_object_or_404
+from django.http import HttpResponseRedirect
 # Create your views here.
-from blogs.models import Blog,Category
+from blogs.models import Blog,Category,Comment
 from django.db.models import Q  
 def posts_by_category(request,category_id):
     # fetch the posts that belong to the category with the id category id
@@ -21,8 +21,19 @@ def posts_by_category(request,category_id):
 
 def blogs(request,slug):
     single_blog = get_object_or_404(Blog,slug=slug, status=1)
+    if request.method == 'POST':
+        comment = Comment()
+        comment.user = request.user
+        comment.blog = single_blog
+        comment.comment = request.POST['comment']
+        comment.save()
+        return HttpResponseRedirect()
+    comments = Comment.objects .filter(blog=single_blog)
+    comment_count = comments.count()
     context={
-        'single_blog' : single_blog
+        'single_blog' : single_blog,
+        'comments': comments,
+        'comment_count' : comment_count,
     }
     return render(request , 'blogs.html',context)
 
@@ -34,3 +45,5 @@ def search(request):
         'keyword': keyword,
     }
     return render(request,'search.html',context)
+
+
